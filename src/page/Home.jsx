@@ -27,14 +27,14 @@ const StyledDiaryBox = styled(StyledBox)`
   flex-direction: column;
 `;
 
-function Home() {
+function Home({ events, setEvents }) {
   return (
     <StyledContainer>
       <StyledBox>
-        <TodolistHome />
+        <TodolistHome events={events} setEvents={setEvents} />
       </StyledBox>
       <StyledBox>
-        <Calendar />
+        <Calendar events={events} setEvents={setEvents} />
       </StyledBox>
       <StyledDiaryBox>
         <DiaryHome />
