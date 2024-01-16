@@ -3,7 +3,8 @@ import TitleHome from "./TitleHome";
 import EditAndDelete from "./EditAndDelete";
 
 const StyledContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 100%;
   gap: 2rem;
 `;
@@ -24,47 +25,35 @@ const StyledTitleBox = styled.div`
   margin-bottom: 3rem;
 `;
 
-function DiaryHome() {
+function DiaryHome({ diaries, setDiaries }) {
+  function handleDelete(id) {
+    setDiaries(diaries.filter((diary) => diary.id !== id));
+  }
   return (
     <>
-      <TitleHome title="Diary" />
+      <TitleHome title="Diary" diaries={diaries} setDiaries={setDiaries} />
       <StyledContainer>
-        <StyledDiaryBox>
-          <StyledTitleBox>
-            <p>5 Jan 2024</p>
-            <EditAndDelete />
-          </StyledTitleBox>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            dolorum repudiandae temporibus autem a nobis soluta reprehenderit,
-            debitis placeat suscipit nihil maiores ipsum tenetur velit ut
-            accusantium error, voluptatem impedit.
-          </p>
-        </StyledDiaryBox>
-        <StyledDiaryBox>
-          <StyledTitleBox>
-            <p>4 Jan 2024</p>
-            <EditAndDelete />
-          </StyledTitleBox>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            dolorum repudiandae temporibus autem a nobis soluta reprehenderit,
-            debitis placeat suscipit nihil maiores ipsum tenetur velit ut
-            accusantium error, voluptatem impedit.
-          </p>
-        </StyledDiaryBox>
-        <StyledDiaryBox>
-          <StyledTitleBox>
-            <p>3 Jan 2024</p>
-            <EditAndDelete />
-          </StyledTitleBox>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            dolorum repudiandae temporibus autem a nobis soluta reprehenderit,
-            debitis placeat suscipit nihil maiores ipsum tenetur velit ut
-            accusantium error, voluptatem impedit.
-          </p>
-        </StyledDiaryBox>
+        {diaries
+          // .slice(0, 3)
+          .slice(Math.max(diaries.length - 3, 0))
+          .reverse()
+          .map((diary, i) => (
+            <StyledDiaryBox key={diary.id}>
+              <StyledTitleBox>
+                <p>{diary.date}</p>
+                <EditAndDelete
+                  id={diary.id}
+                  children={handleDelete}
+                  diary={diary}
+                  diaries={diaries}
+                  setDiaries={setDiaries}
+                  editModal="diary"
+                  i={i}
+                />
+              </StyledTitleBox>
+              <p>{diary.note}</p>
+            </StyledDiaryBox>
+          ))}
       </StyledContainer>
     </>
   );

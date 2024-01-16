@@ -17,7 +17,7 @@ const StyledMain = styled.main`
   padding: 1rem 2rem;
   border-radius: 10px;
   border: 0.1px solid #616161;
-
+  height: 100%;
   flex: 5;
 `;
 

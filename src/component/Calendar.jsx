@@ -12,18 +12,11 @@ const StyledCalendarContainer = styled.div`
   height: 100%;
 `;
 
-const StyledModalContainer = styled.div`
-  position: relative;
-  z-index: 10;
-`;
-
-const StyledModal = styled.div`
-  position: fixed;
-  inset: 0px;
-  background-color: rgb(107 114 128) / 0.75;
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+const StyledTitle = styled.h1`
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.3rem;
+  margin-bottom: 1rem;
 `;
 
 function Calendar() {
@@ -68,7 +61,7 @@ function Calendar() {
 
   return (
     <>
-      <TitleHome title="Calendar" />
+      <StyledTitle>Calendar</StyledTitle>
       <StyledCalendarContainer>
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}

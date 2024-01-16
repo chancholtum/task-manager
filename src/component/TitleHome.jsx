@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { useState } from "react";
+
+import CreateTask from "./modals/CreateTask";
+import CreateDiary from "./modals/CreateDiary";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -29,14 +33,36 @@ const StyledIcon = styled.i`
   }
 `;
 
-function TitleHome({ title }) {
+function TitleHome({ title, create, events, setEvents, diaries, setDiaries }) {
+  const [modal, setModal] = useState(false);
+  function toggle() {
+    setModal(!modal);
+  }
+
   return (
-    <StyledContainer>
-      <StyledTitle>{title}</StyledTitle>
-      <StyledButton>
-        <StyledIcon className="fa-solid fa-plus"></StyledIcon>
-      </StyledButton>
-    </StyledContainer>
+    <>
+      <StyledContainer>
+        <StyledTitle>{title}</StyledTitle>
+        <StyledButton onClick={toggle}>
+          <StyledIcon className="fa-solid fa-plus"></StyledIcon>
+        </StyledButton>
+      </StyledContainer>
+      {create === "task" ? (
+        <CreateTask
+          toggle={toggle}
+          modal={modal}
+          events={events}
+          setEvents={setEvents}
+        />
+      ) : (
+        <CreateDiary
+          toggle={toggle}
+          modal={modal}
+          diaries={diaries}
+          setDiaries={setDiaries}
+        />
+      )}
+    </>
   );
 }
 export default TitleHome;

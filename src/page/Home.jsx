@@ -7,8 +7,8 @@ const StyledContainer = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 2fr 1fr;
   gap: 2rem;
 `;
 
@@ -27,7 +27,7 @@ const StyledDiaryBox = styled(StyledBox)`
   flex-direction: column;
 `;
 
-function Home({ events, setEvents }) {
+function Home({ events, setEvents, diaries, setDiaries }) {
   return (
     <StyledContainer>
       <StyledBox>
@@ -37,7 +37,7 @@ function Home({ events, setEvents }) {
         <Calendar events={events} setEvents={setEvents} />
       </StyledBox>
       <StyledDiaryBox>
-        <DiaryHome />
+        <DiaryHome diaries={diaries} setDiaries={setDiaries} />
       </StyledDiaryBox>
     </StyledContainer>
   );

@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Kanit", sans-serif;
   color: #fff;
+  outline: none;
 }
 
 html {
@@ -18,7 +19,6 @@ body {
 
   font-size: 1.6rem;
   font-weight: 400;
-  outline: none;
   height: 100%;
 }
 
@@ -32,4 +32,32 @@ button {
   background: inherit;
   border: none;
   cursor: pointer;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.modal-dialog {
+  border-radius: 0;
+}
+
+.modal-content {
+  border-radius: 10px;
+  /* border: 1px solid #616161; */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+ul {
+  padding-left: 0;
 }

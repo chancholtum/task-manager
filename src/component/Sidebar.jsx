@@ -10,6 +10,7 @@ const StyledContainer = styled.nav`
   border: 0.1px solid #616161;
   justify-content: space-between;
   flex: 1;
+  height: 100%;
 `;
 
 const StyledInfoContainer = styled.div`
