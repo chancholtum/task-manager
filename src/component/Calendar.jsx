@@ -8,8 +8,8 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 const StyledCalendarContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 60rem;
+  max-width: 60rem;
 `;
 
 const StyledTitle = styled.h1`

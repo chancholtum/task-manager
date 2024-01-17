@@ -28,6 +28,30 @@ function App() {
     }
   });
 
+  function dateFormatToDisplay(date) {
+    const arr = date.split("-");
+
+    let year = arr[0];
+    let month = arr[1];
+    let day = arr[2];
+
+    let formatteddate = day + "-" + month + "-" + year;
+
+    return formatteddate;
+  }
+
+  function dateFormatToEdit(date) {
+    const arr = date.split("-");
+
+    let day = arr[0];
+    let month = arr[1];
+    let year = arr[2];
+
+    let formatteddate = year + "-" + month + "-" + day;
+
+    return formatteddate;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -41,16 +65,29 @@ function App() {
                 setEvents={setEvents}
                 diaries={diaries}
                 setDiaries={setDiaries}
+                dateFormatToDisplay={dateFormatToDisplay}
               />
             }
           />
           <Route
             path="todolist"
-            element={<ToDoList events={events} setEvents={setEvents} />}
+            element={
+              <ToDoList
+                events={events}
+                setEvents={setEvents}
+                dateFormatToDisplay={dateFormatToDisplay}
+              />
+            }
           />
           <Route
             path="diary"
-            element={<Diary diaries={diaries} setDiaries={setDiaries} />}
+            element={
+              <Diary
+                diaries={diaries}
+                setDiaries={setDiaries}
+                dateFormatToDisplay={dateFormatToDisplay}
+              />
+            }
           />
         </Route>
       </Routes>

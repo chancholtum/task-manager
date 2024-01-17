@@ -68,15 +68,6 @@ function CreateTask({ modal, toggle, events, setEvents }) {
   const [date, setDate] = useState("");
   const [completed, setCompleted] = useState(false);
 
-  // useEffect(() => {
-  //   let arr = localStorage.getItem("events");
-
-  //   if (arr) {
-  //     let obj = JSON.parse(arr);
-  //     setEvents(obj);
-  //   }
-  // }, []);
-
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
@@ -140,7 +131,6 @@ function CreateTask({ modal, toggle, events, setEvents }) {
             <StyledInput
               type="date"
               name="date"
-              placeholder="Description your task"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />

@@ -63,7 +63,7 @@ const StyledInompleted = styled.p`
   cursor: pointer;
 `;
 
-function ToDoList({ events, setEvents }) {
+function ToDoList({ events, setEvents, dateFormatToDisplay }) {
   function handleDelete(id) {
     setEvents(events.filter((event) => event.id !== id));
   }
@@ -84,6 +84,7 @@ function ToDoList({ events, setEvents }) {
         create="task"
         events={events}
         setEvents={setEvents}
+        dateFormatToDisplay={dateFormatToDisplay}
       />
       <StyledContainer>
         {events.map((event, i) => (
@@ -95,7 +96,7 @@ function ToDoList({ events, setEvents }) {
               </StyledTitleAndDescription>
               <StyledBottomBox>
                 <StyledLeftBox>
-                  <StyledDate>{event.date}</StyledDate>
+                  <StyledDate>{dateFormatToDisplay(event.date)}</StyledDate>
                   {event.completed ? (
                     <StyledCompleted onClick={() => handleCompleted(event.id)}>
                       Complete

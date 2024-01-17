@@ -25,13 +25,18 @@ const StyledTitleBox = styled.div`
   margin-bottom: 3rem;
 `;
 
-function DiaryHome({ diaries, setDiaries }) {
+function DiaryHome({ diaries, setDiaries, dateFormatToDisplay }) {
   function handleDelete(id) {
     setDiaries(diaries.filter((diary) => diary.id !== id));
   }
   return (
     <>
-      <TitleHome title="Diary" diaries={diaries} setDiaries={setDiaries} />
+      <TitleHome
+        title="Diary"
+        diaries={diaries}
+        setDiaries={setDiaries}
+        dateFormatToDisplay={dateFormatToDisplay}
+      />
       <StyledContainer>
         {diaries
           // .slice(0, 3)
@@ -40,7 +45,7 @@ function DiaryHome({ diaries, setDiaries }) {
           .map((diary, i) => (
             <StyledDiaryBox key={diary.id}>
               <StyledTitleBox>
-                <p>{diary.date}</p>
+                <p>{dateFormatToDisplay(diary.date)}</p>
                 <EditAndDelete
                   id={diary.id}
                   children={handleDelete}
@@ -49,6 +54,7 @@ function DiaryHome({ diaries, setDiaries }) {
                   setDiaries={setDiaries}
                   editModal="diary"
                   i={i}
+                  dateFormatToDisplay={dateFormatToDisplay}
                 />
               </StyledTitleBox>
               <p>{diary.note}</p>

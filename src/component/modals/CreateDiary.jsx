@@ -111,8 +111,8 @@ function CreateDiary({ modal, toggle, diaries, setDiaries }) {
             <StyledInput
               type="date"
               name="date"
-              placeholder="Description your task"
               value={date}
+              required
               onChange={(e) => setDate(e.target.value)}
             />
           </StyledForm>

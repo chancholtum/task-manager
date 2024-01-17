@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import TitleHome from "./TitleHome";
 import EditAndDelete from "./EditAndDelete";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Draggable } from "@fullcalendar/interaction";
+import SearchEvent from "./SearchEvent";
+import SortBy from "./SortBy";
+
+const StyledSearchAndSortBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const StyledListContainer = styled.ul`
   list-style: none;
   overflow: auto;
+  margin-top: 2rem;
 `;
 
 const StyledList = styled.li`
@@ -36,7 +45,7 @@ const StyledText = styled.p`
 `;
 
 function TodolistHome({ events, setEvents }) {
-  let sortEvents = events.slice().sort((a, b) => +a.completed - +b.completed);
+  const [searchEvent, setSearchEvent] = useState("");
 
   useEffect(() => {
     let draggableEl = document.getElementById("draggable-el");
@@ -57,6 +66,17 @@ function TodolistHome({ events, setEvents }) {
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
+
+  let sortEvents = events.slice().sort((a, b) => +a.completed - +b.completed);
+
+  const search =
+    searchEvent.length > 0
+      ? sortEvents.filter((event) =>
+          `${event.title}`.toLowerCase().includes(searchEvent.toLowerCase())
+        )
+      : sortEvents;
+
+  const sortCompleted = events.filter((event) => event.completed === true);
 
   function handleDelete(id) {
     setEvents(events.filter((event) => event.id !== id));
@@ -79,8 +99,16 @@ function TodolistHome({ events, setEvents }) {
         events={events}
         setEvents={setEvents}
       />
+      <StyledSearchAndSortBox>
+        <SearchEvent
+          evetns={events}
+          searchEvent={searchEvent}
+          setSearchEvent={setSearchEvent}
+        />
+        <SortBy />
+      </StyledSearchAndSortBox>
       <StyledListContainer id="draggable-el">
-        {sortEvents.map((event, i) => (
+        {search.map((event, i) => (
           <StyledList title={event.title} key={event.id}>
             <StyledTitleBox>
               <StyledInput

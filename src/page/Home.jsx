@@ -27,7 +27,7 @@ const StyledDiaryBox = styled(StyledBox)`
   flex-direction: column;
 `;
 
-function Home({ events, setEvents, diaries, setDiaries }) {
+function Home({ events, setEvents, diaries, setDiaries, dateFormatToDisplay }) {
   return (
     <StyledContainer>
       <StyledBox>
@@ -37,7 +37,11 @@ function Home({ events, setEvents, diaries, setDiaries }) {
         <Calendar events={events} setEvents={setEvents} />
       </StyledBox>
       <StyledDiaryBox>
-        <DiaryHome diaries={diaries} setDiaries={setDiaries} />
+        <DiaryHome
+          diaries={diaries}
+          setDiaries={setDiaries}
+          dateFormatToDisplay={dateFormatToDisplay}
+        />
       </StyledDiaryBox>
     </StyledContainer>
   );
