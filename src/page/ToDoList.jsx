@@ -8,8 +8,8 @@ const StyledContainer = styled.div`
   gap: 3rem;
 `;
 
-const StyledTodolistContainer = styled.div`
-  padding: 1rem 2rem;
+const StyledEventsContainer = styled.div`
+  padding: 2rem;
   border-radius: 10px;
   border: 0.1px solid #616161;
 `;
@@ -22,13 +22,59 @@ const StyledEventBox = styled.div`
   height: 100%;
 `;
 
+const StyledTitleAndDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const StyledTitle = styled.h1`
+  font-weight: 500;
+`;
+
 const StyledBottomBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
   margin-top: auto;
+`;
+
+const StyledLeftBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const StyledDate = styled.p`
+  font-size: 1.4rem;
+  font-weight: 200;
+`;
+
+const StyledCompleted = styled.p`
+  background: #43a047;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+`;
+const StyledInompleted = styled.p`
+  background: #ff5722;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
 `;
 
 function ToDoList({ events, setEvents }) {
   function handleDelete(id) {
     setEvents(events.filter((event) => event.id !== id));
+  }
+
+  function handleCompleted(id) {
+    setEvents(
+      events.map((event) =>
+        event.id === id ? { ...event, completed: !event.completed } : event
+      )
+    );
+    localStorage.setItem("events", JSON.stringify(events));
   }
 
   return (
@@ -41,17 +87,25 @@ function ToDoList({ events, setEvents }) {
       />
       <StyledContainer>
         {events.map((event, i) => (
-          <StyledTodolistContainer key={event.id}>
+          <StyledEventsContainer key={event.id}>
             <StyledEventBox>
-              <div>
-                <p>{event.title}</p>
+              <StyledTitleAndDescription>
+                <StyledTitle>{event.title}</StyledTitle>
                 <p>{event.description}</p>
-              </div>
+              </StyledTitleAndDescription>
               <StyledBottomBox>
-                <div>
-                  <p>{event.date}</p>
-                  {event.completed ? <p>Complete</p> : <p>Incompleted</p>}
-                </div>
+                <StyledLeftBox>
+                  <StyledDate>{event.date}</StyledDate>
+                  {event.completed ? (
+                    <StyledCompleted onClick={() => handleCompleted(event.id)}>
+                      Complete
+                    </StyledCompleted>
+                  ) : (
+                    <StyledInompleted onClick={() => handleCompleted(event.id)}>
+                      Incompleted
+                    </StyledInompleted>
+                  )}
+                </StyledLeftBox>
                 <EditAndDelete
                   events={events}
                   setEvents={setEvents}
@@ -63,7 +117,7 @@ function ToDoList({ events, setEvents }) {
                 />
               </StyledBottomBox>
             </StyledEventBox>
-          </StyledTodolistContainer>
+          </StyledEventsContainer>
         ))}
       </StyledContainer>
     </>

@@ -50,9 +50,7 @@ function App() {
           />
           <Route
             path="diary"
-            element={<Diary />}
-            diaries={diaries}
-            setDiaries={setDiaries}
+            element={<Diary diaries={diaries} setDiaries={setDiaries} />}
           />
         </Route>
       </Routes>
