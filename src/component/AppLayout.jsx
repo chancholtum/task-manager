@@ -6,11 +6,15 @@ import SideBar from "./Sidebar";
 const StyledContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   justify-content: center;
   margin: 0 auto;
   gap: 3rem;
-  padding: 3rem;
+  padding: 2rem;
+
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledMain = styled.main`
@@ -19,6 +23,10 @@ const StyledMain = styled.main`
   border: 0.1px solid #616161;
   height: 100%;
   flex: 5;
+
+  @media screen and (max-width: 768px) {
+    flex: 2;
+  }
 `;
 
 function AppLayout() {

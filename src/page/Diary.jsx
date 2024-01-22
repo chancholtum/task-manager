@@ -4,8 +4,17 @@ import EditAndDelete from "../component/EditAndDelete";
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+
   gap: 3rem;
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledDiaryBox = styled.div`

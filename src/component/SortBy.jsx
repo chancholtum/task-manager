@@ -57,14 +57,17 @@ const ArrowImg = styled.i`
   color: #fff;
 `;
 
-function SortBy() {
+function SortBy({ sortFn, setSortBy }) {
   const [isToggle, setIsToggle] = useState(false);
 
   function handleToggle() {
     setIsToggle(!isToggle);
   }
 
-  function handleSortAll() {}
+  function clickSort(e) {
+    setSortBy(e.target.textContent);
+    setIsToggle(!isToggle);
+  }
 
   return (
     <DropDown>
@@ -74,9 +77,9 @@ function SortBy() {
       </SelectContainerDefault>
       {isToggle && (
         <SelectContainerDropDown>
-          <DropDownMenu>All</DropDownMenu>
-          <DropDownMenu>Completed</DropDownMenu>
-          <DropDownMenu>Incompleted</DropDownMenu>
+          <DropDownMenu onClick={clickSort}>All</DropDownMenu>
+          <DropDownMenu onClick={clickSort}>Completed</DropDownMenu>
+          <DropDownMenu onClick={clickSort}>Incompleted</DropDownMenu>
         </SelectContainerDropDown>
       )}
     </DropDown>

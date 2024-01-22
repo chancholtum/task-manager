@@ -7,6 +7,14 @@ const StyledContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   height: 100%;
   gap: 2rem;
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledDiaryBox = styled.div`

@@ -8,8 +8,18 @@ const StyledContainer = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 2fr 0.5fr;
   gap: 2rem;
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  @media screen and (max-width: 972px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
 `;
 
 const StyledBox = styled.div`

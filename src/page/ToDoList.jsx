@@ -1,11 +1,29 @@
 import styled from "styled-components";
 import TitleHome from "../component/TitleHome";
 import EditAndDelete from "../component/EditAndDelete";
+import SortBy from "../component/SortBy";
+import SearchEvent from "../component/SearchEvent";
+import { useState } from "react";
+
+const StyledSearchAndSortBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+`;
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 3rem;
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledEventsContainer = styled.div`
@@ -64,6 +82,21 @@ const StyledInompleted = styled.p`
 `;
 
 function ToDoList({ events, setEvents, dateFormatToDisplay }) {
+  const [searchEvent, setSearchEvent] = useState("");
+  const [sortBy, setSortBy] = useState("All");
+
+  const search =
+    searchEvent.length > 0
+      ? events.filter((event) =>
+          `${event.title}`.toLowerCase().includes(searchEvent.toLowerCase())
+        )
+      : events;
+
+  const sortCompleted = search.filter((event) => event.completed === true);
+  const sortIncompleted = search.filter((event) => event.completed === false);
+
+  let sorted;
+
   function handleDelete(id) {
     setEvents(events.filter((event) => event.id !== id));
   }
@@ -77,6 +110,13 @@ function ToDoList({ events, setEvents, dateFormatToDisplay }) {
     localStorage.setItem("events", JSON.stringify(events));
   }
 
+  function sortFn() {
+    if (sortBy === "All") sorted = search;
+    if (sortBy === "Completed") sorted = sortCompleted;
+    if (sortBy === "Incompleted") sorted = sortIncompleted;
+  }
+  sortFn();
+
   return (
     <>
       <TitleHome
@@ -86,8 +126,15 @@ function ToDoList({ events, setEvents, dateFormatToDisplay }) {
         setEvents={setEvents}
         dateFormatToDisplay={dateFormatToDisplay}
       />
+      <StyledSearchAndSortBox>
+        <SearchEvent
+          searchEvent={searchEvent}
+          setSearchEvent={setSearchEvent}
+        />
+        <SortBy sortFn={sortFn} setSortBy={setSortBy} />
+      </StyledSearchAndSortBox>
       <StyledContainer>
-        {events.map((event, i) => (
+        {sorted.map((event, i) => (
           <StyledEventsContainer key={event.id}>
             <StyledEventBox>
               <StyledTitleAndDescription>

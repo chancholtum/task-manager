@@ -46,6 +46,7 @@ const StyledText = styled.p`
 
 function TodolistHome({ events, setEvents }) {
   const [searchEvent, setSearchEvent] = useState("");
+  const [sortBy, setSortBy] = useState("All");
 
   useEffect(() => {
     let draggableEl = document.getElementById("draggable-el");
@@ -76,7 +77,17 @@ function TodolistHome({ events, setEvents }) {
         )
       : sortEvents;
 
-  const sortCompleted = events.filter((event) => event.completed === true);
+  const sortCompleted = search.filter((event) => event.completed === true);
+  const sortIncompleted = search.filter((event) => event.completed === false);
+
+  let sorted;
+
+  function sortFn() {
+    if (sortBy === "All") sorted = search;
+    if (sortBy === "Completed") sorted = sortCompleted;
+    if (sortBy === "Incompleted") sorted = sortIncompleted;
+  }
+  sortFn();
 
   function handleDelete(id) {
     setEvents(events.filter((event) => event.id !== id));
@@ -101,14 +112,13 @@ function TodolistHome({ events, setEvents }) {
       />
       <StyledSearchAndSortBox>
         <SearchEvent
-          evetns={events}
           searchEvent={searchEvent}
           setSearchEvent={setSearchEvent}
         />
-        <SortBy />
+        <SortBy sortFn={sortFn} setSortBy={setSortBy} />
       </StyledSearchAndSortBox>
       <StyledListContainer id="draggable-el">
-        {search.map((event, i) => (
+        {sorted.map((event, i) => (
           <StyledList title={event.title} key={event.id}>
             <StyledTitleBox>
               <StyledInput
@@ -118,7 +128,6 @@ function TodolistHome({ events, setEvents }) {
                 onChange={() => handleCompleted(event.id)}
               />
               <StyledText
-                className="fc-event"
                 onClick={() => handleCompleted(event.id)}
                 as={String(event.completed)}
               >
