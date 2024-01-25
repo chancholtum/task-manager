@@ -41,7 +41,7 @@ function EditAndDelete({
   return (
     <>
       <StyledButtonBox>
-        <button onClick={toggle}>
+        <button onClick={toggle} data-testid="editbutton">
           <StyledIcon className="fa-solid fa-pen-to-square"></StyledIcon>
         </button>
         <button onClick={handleDelete}>
