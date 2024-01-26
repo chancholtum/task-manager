@@ -5,6 +5,7 @@ import Diary from "./page/Diary";
 import AppLayout from "./component/AppLayout";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from "./component/Sidebar";
 
 function App() {
   const [events, setEvents] = useState(() => {
@@ -53,45 +54,44 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<Navigate replace to="home" />} />
-          <Route
-            path="home"
-            element={
-              <Home
-                events={events}
-                setEvents={setEvents}
-                diaries={diaries}
-                setDiaries={setDiaries}
-                dateFormatToDisplay={dateFormatToDisplay}
-              />
-            }
-          />
-          <Route
-            path="todolist"
-            element={
-              <ToDoList
-                events={events}
-                setEvents={setEvents}
-                dateFormatToDisplay={dateFormatToDisplay}
-              />
-            }
-          />
-          <Route
-            path="diary"
-            element={
-              <Diary
-                diaries={diaries}
-                setDiaries={setDiaries}
-                dateFormatToDisplay={dateFormatToDisplay}
-              />
-            }
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<Navigate replace to="home" />} />
+        <Route
+          path="home"
+          element={
+            <Home
+              events={events}
+              setEvents={setEvents}
+              diaries={diaries}
+              setDiaries={setDiaries}
+              dateFormatToDisplay={dateFormatToDisplay}
+            />
+          }
+        />
+        <Route
+          path="todolist"
+          element={
+            <ToDoList
+              events={events}
+              setEvents={setEvents}
+              dateFormatToDisplay={dateFormatToDisplay}
+            />
+          }
+        />
+        <Route
+          path="diary"
+          element={
+            <Diary
+              diaries={diaries}
+              setDiaries={setDiaries}
+              dateFormatToDisplay={dateFormatToDisplay}
+            />
+          }
+        />
+        <Route path="sidebar" element={<Sidebar />} />
+      </Route>
+    </Routes>
   );
 }
 

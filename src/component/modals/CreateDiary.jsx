@@ -113,12 +113,14 @@ function CreateDiary({ modal, toggle, diaries, setDiaries }) {
               name="date"
               value={date}
               required
+              data-testid="createDiaryDate"
               onChange={(e) => setDate(e.target.value)}
             />
           </StyledForm>
 
-          <StyledButton>
-            <i className="fa-solid fa-plus"></i>Create Diary
+          <StyledButton data-testid="createDiarySubmitButton">
+            <i className="fa-solid fa-plus"></i>
+            Create Diary
           </StyledButton>
         </StyledForms>
       </StyledModalContainer>

@@ -44,7 +44,10 @@ function TitleHome({ title, create, events, setEvents, diaries, setDiaries }) {
       <StyledContainer>
         <StyledTitle>{title}</StyledTitle>
         <StyledButton onClick={toggle}>
-          <StyledIcon className="fa-solid fa-plus"></StyledIcon>
+          <StyledIcon
+            data-testid="createTaskAndDiary"
+            className="fa-solid fa-plus"
+          ></StyledIcon>
         </StyledButton>
       </StyledContainer>
       {create === "task" ? (

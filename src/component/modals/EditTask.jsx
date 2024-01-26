@@ -69,10 +69,10 @@ function EditTask({ modal, toggle, events, setEvents, event, i }) {
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
-    setTaskTitle(event.title);
-    setDescription(event.description);
-    setDate(event.date);
-    setCompleted(event.completed);
+    setTaskTitle(event?.title);
+    setDescription(event?.description);
+    setDate(event?.date);
+    setCompleted(event?.completed);
   }, []);
 
   function handleEdit(e) {

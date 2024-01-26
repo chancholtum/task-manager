@@ -132,6 +132,7 @@ function CreateTask({ modal, toggle, events, setEvents }) {
               type="date"
               name="date"
               value={date}
+              data-testid="createTaskDate"
               onChange={(e) => setDate(e.target.value)}
             />
           </StyledForm>
@@ -145,7 +146,7 @@ function CreateTask({ modal, toggle, events, setEvents }) {
               onChange={(e) => setCompleted(e.target.checked)}
             />
           </StyledToggleBox>
-          <StyledButton>
+          <StyledButton data-testid="createTaskSubmitButton">
             <i className="fa-solid fa-plus"></i>Create Task
           </StyledButton>
         </StyledForms>

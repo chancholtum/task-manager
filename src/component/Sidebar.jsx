@@ -199,13 +199,17 @@ function Sidebar() {
         <StyledNameBox>
           <StyledText>{username}</StyledText>
           <StyledIcon
+            data-testid="editUser"
             className="fa-solid fa-gear"
             onClick={handleToggle}
           ></StyledIcon>
           {toggle && (
             <StyledSettingBox onSubmit={handleSetting}>
               <StyledFlexRow>
-                <StyledImgInSetting src="profile.webp" alt="profile" />
+                <StyledImgInSetting
+                  src="profile.webp"
+                  alt="profile in setting"
+                />
                 <div>
                   <StyledLabel htmlFor="username">Username</StyledLabel>
                   <StyledInputSetting
