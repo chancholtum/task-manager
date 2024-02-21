@@ -18,7 +18,6 @@ function App() {
     }
   });
 
-  // const [diaries, setDiaries] = useState([]);
   const [diaries, setDiaries] = useState(() => {
     const storedDiaries = localStorage.getItem("diaries");
 
@@ -41,17 +40,17 @@ function App() {
     return formatteddate;
   }
 
-  function dateFormatToEdit(date) {
-    const arr = date.split("-");
+  // function dateFormatToEdit(date) {
+  //   const arr = date.split("-");
 
-    let day = arr[0];
-    let month = arr[1];
-    let year = arr[2];
+  //   let day = arr[0];
+  //   let month = arr[1];
+  //   let year = arr[2];
 
-    let formatteddate = year + "-" + month + "-" + day;
+  //   let formatteddate = year + "-" + month + "-" + day;
 
-    return formatteddate;
-  }
+  //   return formatteddate;
+  // }
 
   return (
     <Routes>

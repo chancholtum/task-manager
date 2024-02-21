@@ -29,7 +29,7 @@ const SelectContainerDropDown = styled.div`
 `;
 
 const SelectContainerDefault = styled.div`
-  width: 110px;
+  width: 150px;
   padding: 1.7rem 1.5rem;
   border-radius: 100px;
   background: #1a1919;
@@ -57,7 +57,7 @@ const ArrowImg = styled.i`
   color: #fff;
 `;
 
-function SortBy({ sortFn, setSortBy }) {
+function SortBy({ sortFn, sortBy, setSortBy }) {
   const [isToggle, setIsToggle] = useState(false);
 
   function handleToggle() {
@@ -72,7 +72,7 @@ function SortBy({ sortFn, setSortBy }) {
   return (
     <DropDown>
       <SelectContainerDefault onClick={handleToggle}>
-        <SelectText>All</SelectText>
+        <SelectText>{sortBy}</SelectText>
         <ArrowImg className="fa-solid fa-arrow-down"></ArrowImg>
       </SelectContainerDefault>
       {isToggle && (

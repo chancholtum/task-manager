@@ -62,7 +62,7 @@ const StyledButton = styled.button`
   }
 `;
 
-function EditTask({ modal, toggle, events, setEvents, event, i }) {
+function EditTask({ modal, toggle, events, setEvents, event, i, id }) {
   const [taskTitle, setTaskTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("test");
@@ -87,7 +87,8 @@ function EditTask({ modal, toggle, events, setEvents, event, i }) {
     };
 
     let tempEvents = [...events];
-    tempEvents[i] = taskObj;
+    const index = events.findIndex((event) => event.id === id);
+    tempEvents[index] = taskObj;
     localStorage.setItem("events", JSON.stringify(tempEvents));
     setEvents(tempEvents);
 
@@ -141,6 +142,7 @@ function EditTask({ modal, toggle, events, setEvents, event, i }) {
               type="checkbox"
               name="completed"
               placeholder="Description your task"
+              checked={completed}
               value={completed}
               onChange={(e) => setCompleted(e.target.checked)}
             />

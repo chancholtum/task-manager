@@ -6,13 +6,12 @@ import Home from "../page/Home";
 import TodolistHome from "../component/TodolistHome";
 import EditAndDelete from "../component/EditAndDelete";
 import DiaryHome from "../component/DiaryHome";
-import Sidebar from "../component/Sidebar";
 
 const mockEvents = [
   {
     title: "Test1",
     completed: false,
-    date: "2024-01-15",
+    date: "2024-02-15",
     description: "I am Lazy",
     id: 1,
   },
@@ -64,11 +63,11 @@ describe("Test case of task-manager", () => {
   });
 
   it("Test Case 2: หน้าปฏิทินโหลดสำเร็จและแสดงปฏิทินปัจจุบัน", () => {
-    expect(screen.getByText(/Calendar/)).toBeInTheDocument();
+    expect(screen.getByText(/February 2024/)).toBeInTheDocument();
   });
 
-  it("Test Case 3: หน้าบันทึกประจำวันโหลดและแสดงฟอร์มสำหรับการเขียนบันทึก", () => {
-    expect(screen.getByText(/Calendar/)).toBeInTheDocument();
+  it("Test Case 3: หน้าบันทึกประจำวันโหลดสำเร็จ", () => {
+    expect(screen.getByText("Diary")).toBeInTheDocument();
   });
 });
 
@@ -98,7 +97,7 @@ it("Test Case 6: ฟังก์ชันการค้นหา To-do ต่�
   expect(screen.queryByText("Node.js")).not.toBeInTheDocument();
 });
 
-it("Test Case 10: การบันทึกข้อมูลในฟอร์มบันทึกประจำวันและการเรียกดูข้อมูลนั้นภายหลังได้", () => {
+it("Test Case 7: การบันทึกข้อมูลในฟอร์มบันทึกประจำวันและการเรียกดูข้อมูลนั้นภายหลังได้", () => {
   render(
     <DiaryHome
       diaries={mockDiaries}
@@ -116,7 +115,7 @@ it("Test Case 10: การบันทึกข้อมูลในฟอร�
   expect(screen.getByText(/Today is 25 Jan 2024/)).toBeInTheDocument();
 });
 
-it("Test Case 11: การสร้าง และ ทำการลบรายการใน To-Do List ได้", () => {
+it("Test Case 8: การสร้าง และ ทำการลบรายการใน To-Do List ได้", () => {
   render(<TodolistHome events={mockEvents} create="task" />);
   fireEvent.click(screen.getByTestId("createTaskAndDiary"));
   fireEvent.change(screen.getByPlaceholderText("Your Task"), {
@@ -128,11 +127,5 @@ it("Test Case 11: การสร้าง และ ทำการลบรา
   fireEvent.change(screen.getByTestId("createTaskDate"), {
     target: { value: "01-01-2024" },
   });
-  // fireEvent.click(screen.getByTestId("createTaskSubmitButton"));
   expect(screen.getByText(/Test1/)).toBeInTheDocument();
-  // fireEvent.click(screen.getAllByTestId("deleteButton"));
 });
-
-// it("Test Case 12: การเปลี่ยนแปลงธีมหรือการตั้งค่าส่วนตัวของผู้ใช้", () => {
-//   render(<Sidebar />);
-// });

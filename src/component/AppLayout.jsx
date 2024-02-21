@@ -6,7 +6,7 @@ import SideBar from "./Sidebar";
 const StyledContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   justify-content: center;
   margin: 0 auto;
   gap: 3rem;
@@ -21,7 +21,7 @@ const StyledMain = styled.main`
   padding: 1rem 2rem;
   border-radius: 10px;
   border: 0.1px solid #616161;
-  height: 100%;
+  min-height: 100%;
   flex: 5;
 
   @media screen and (max-width: 768px) {

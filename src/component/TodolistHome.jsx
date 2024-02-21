@@ -48,21 +48,21 @@ function TodolistHome({ events, setEvents }) {
   const [searchEvent, setSearchEvent] = useState("");
   const [sortBy, setSortBy] = useState("All");
 
-  useEffect(() => {
-    let draggableEl = document.getElementById("draggable-el");
+  // useEffect(() => {
+  //   let draggableEl = document.getElementById("draggable-el");
 
-    if (draggableEl) {
-      new Draggable(draggableEl, {
-        itemSelector: ".fc-event",
-        eventData: function (eventEl) {
-          let title = eventEl.getAttribute("title");
-          let id = eventEl.getAttribute("data");
-          let start = eventEl.getAttribute("start");
-          return { title, id, start };
-        },
-      });
-    }
-  }, []);
+  //   if (draggableEl) {
+  //     new Draggable(draggableEl, {
+  //       itemSelector: ".fc-event",
+  //       eventData: function (eventEl) {
+  //         let title = eventEl.getAttribute("title");
+  //         let id = eventEl.getAttribute("data");
+  //         let start = eventEl.getAttribute("start");
+  //         return { title, id, start };
+  //       },
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
@@ -115,7 +115,7 @@ function TodolistHome({ events, setEvents }) {
           searchEvent={searchEvent}
           setSearchEvent={setSearchEvent}
         />
-        <SortBy sortFn={sortFn} setSortBy={setSortBy} />
+        <SortBy sortFn={sortFn} sortBy={sortBy} setSortBy={setSortBy} />
       </StyledSearchAndSortBox>
       <StyledListContainer id="draggable-el">
         {sorted.map((event, i) => (

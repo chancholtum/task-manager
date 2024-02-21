@@ -4,7 +4,7 @@ import EditAndDelete from "../component/EditAndDelete";
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 30rem));
 
   gap: 3rem;
 

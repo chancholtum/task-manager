@@ -57,6 +57,7 @@ function EditAndDelete({
           setEvents={setEvents}
           event={event}
           i={i}
+          id={id}
         />
       ) : (
         <EditDiary

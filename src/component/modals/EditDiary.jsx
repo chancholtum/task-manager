@@ -75,6 +75,7 @@ function EditDiary({ modal, toggle, diaries, setDiaries, diary, i }) {
     };
 
     let tempDiaries = [...diaries];
+
     tempDiaries.reverse()[i] = noteObj;
     localStorage.setItem("diaries", JSON.stringify(tempDiaries.reverse()));
     setDiaries(tempDiaries);

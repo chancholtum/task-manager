@@ -14,7 +14,7 @@ const StyledSearchAndSortBox = styled.div`
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 30rem));
   gap: 3rem;
 
   @media screen and (max-width: 640px) {
@@ -131,7 +131,7 @@ function ToDoList({ events, setEvents, dateFormatToDisplay }) {
           searchEvent={searchEvent}
           setSearchEvent={setSearchEvent}
         />
-        <SortBy sortFn={sortFn} setSortBy={setSortBy} />
+        <SortBy sortFn={sortFn} sortBy={sortBy} setSortBy={setSortBy} />
       </StyledSearchAndSortBox>
       <StyledContainer>
         {sorted.map((event, i) => (
